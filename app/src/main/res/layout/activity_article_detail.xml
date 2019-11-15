@@ -37,9 +37,42 @@
             android:textSize="18sp"
             android:layout_marginTop="12dp"
             app:layout_constraintTop_toBottomOf="@id/detailAuthor"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/detailAuthor"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintStart_toStartOf="@id/detailAuthor" />
+
+        <TextView
+            android:id="@+id/textview1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/detailContent"
+            app:layout_constraintStart_toStartOf="@id/detailContent"/>
+
+        <TextView
+            android:id="@+id/textview2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/textview1"
+            app:layout_constraintStart_toStartOf="@id/textview1"/>
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/textview2"
+            app:layout_constraintStart_toStartOf="@id/textview2"/>
+
+        <TextView
+            android:id="@+id/textview4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text3"
+            app:layout_constraintStart_toStartOf="@id/text3"/>
+
+        <TextView
+            android:id="@+id/textview5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/textview4"
+            app:layout_constraintStart_toStartOf="@id/textview4"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

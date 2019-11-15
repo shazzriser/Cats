@@ -21,6 +21,8 @@ import com.example.nyt.FakeDatabase;
 import com.example.nyt.activities.MainActivity;
 import com.example.nyt.R;
 import com.example.nyt.model.Article;
+import com.example.nyt.model.Cat;
+import com.example.nyt.model.CatImageResponse;
 import com.example.nyt.model.CatResponse;
 import com.example.nyt.model.TopStoriesResponse;
 import com.google.gson.Gson;
@@ -88,11 +90,12 @@ public class ArticleRecyclerFragment extends Fragment {
                 CatResponse[] catResponse = gson.fromJson(response, CatResponse[].class);
                 List<CatResponse> cResponse = new ArrayList<>();
                 for(int i=0; i< catResponse.length; i++){
+
                     cResponse.add(catResponse[i]);
                 }
 
                 articleAdapter.setData((ArrayList<CatResponse>) cResponse);
-                //FakeDatabase.saveArticlesToFakeDatabase(topStoriesResponse.results);
+                FakeDatabase.saveArticlesToFakeDatabase((ArrayList<CatResponse>) cResponse);
                 recyclerView.setAdapter(articleAdapter);
                 System.out.println(cResponse.size());
                 requestQueue.stop();
@@ -189,6 +192,7 @@ public class ArticleRecyclerFragment extends Fragment {
                         Gson gson = new Gson();
                         CatResponse[] catResponses = gson.fromJson(response, CatResponse[].class);
                         ArrayList<CatResponse> catsSearch = new ArrayList<>();
+                        // ArrayList<Cat> cats = new ArrayList<>();
                         for(int i=0; i< catResponses.length; i++){
                             catsSearch.add(catResponses[i]);
                         }
@@ -214,4 +218,56 @@ public class ArticleRecyclerFragment extends Fragment {
         queue.add(stringRequest);
 
     }
+
+//    public String catImgSearch(String breedId){
+//        System.out.println("hail hydra");
+//        final List<String> catImgUrl = new ArrayList<>();
+//        //final ArticleAdapter articleAdapter = new ArticleAdapter();
+//        final RequestQueue queue = Volley.newRequestQueue(getContext());
+//        //String txt = breedSearch.getText().toString();
+//        String imgUrl ="https://api.thecatapi.com/v1/images/search?beed_id=" + breedId ;
+//        //System.out.println(txt);
+//
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, imgUrl,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        Gson gson = new Gson();
+//                        CatImageResponse[] catImgRes = gson.fromJson(response, CatImageResponse[].class);
+//
+//                        try {
+//                            catImgUrl.add(catImgRes[0].getUrl());
+//                        }catch (Error error){
+//                            System.out.println(error);
+//                            catImgUrl.add("https://cdn2.thecatapi.com/images/6lc.jpg");
+//                        } finally {
+//                            queue.stop();
+//                        }
+//
+//
+//                        //List<Article> catsSearch = Arrays.asList(article);
+//                        //articleAdapter.setData(catsSearch);
+//                        //recyclerView.setAdapter(articleAdapter);
+//
+//                        //FakeDatabase.saveArticlesToFakeDatabase(catsSearch);
+//                        //System.out.println(catResponses.length);
+//
+//                    }
+//
+//
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        error.printStackTrace();
+//                        System.out.println("Error");
+//                        queue.stop();
+//                    }
+//                });
+//        queue.add(stringRequest);
+//        if(catImgUrl.size() > 0){
+//            return catImgUrl.get(0);
+//        }
+//        return "https://cdn2.thecatapi.com/images/6lc.jpg";
+//    }
 }

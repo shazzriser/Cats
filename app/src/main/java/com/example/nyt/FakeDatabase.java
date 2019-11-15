@@ -2,6 +2,7 @@ package com.example.nyt; // <============= CHANGE ME
 
 import com.example.nyt.model.Article;
 import com.example.nyt.model.Book;
+import com.example.nyt.model.CatResponse;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,32 +26,36 @@ import java.util.List;
  *      Diamonds, Warlords and Mercenaries: Russia’s New Playbook in Africa
  */
 public class FakeDatabase {
-    public static HashMap<Long, Article> articles = new HashMap<>();
+    public static HashMap<String, CatResponse> catResponses = new HashMap<>();
 
     public static HashMap<Long, Book> books = new HashMap<>();
 
     /***
      * Retrieves an Article object using the provided id.
      */
-    public static Article getArticleById(long articleID) {
-        return articles.get(articleID);
+    public static CatResponse getArticleById(String articleID) {
+        return catResponses.get(articleID);
     }
 
     /***
      * Return an ArrayList containing all the articles in the database.
      */
-    public static ArrayList<Article> getAllArticles() {
-        return new ArrayList<Article>((List) Arrays.asList(articles.values().toArray()));
+    public static ArrayList<CatResponse> getAllArticles() {
+        return new ArrayList<CatResponse>((List) Arrays.asList(catResponses.values().toArray()));
     }
 
     // This methods simulates saving the data you get from the API to your local database.
     // This way, we retrieve the whole object for an Article by using its ID.
     // Keep in mind it's not a real database yet.
-    public static void saveArticlesToFakeDatabase(ArrayList<Article> articlesToSave) {
+    public static void saveArticlesToFakeDatabase(ArrayList<CatResponse> articlesToSave) {
         for(int i = 0; i < articlesToSave.size(); i++) {
-            Article article = articlesToSave.get(i);
-            articles.put(article.getId(), article);
+            CatResponse article = articlesToSave.get(i);
+            catResponses.put(article.getId(), article);
         }
+    }
+
+    public static void addFavouriteCat(CatResponse cat){
+        catResponses.put(cat.getId(), cat);
     }
 
 
